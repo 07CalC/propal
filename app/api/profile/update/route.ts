@@ -3,7 +3,7 @@ import { User } from "@/models/User";
 
 
 
-connectDB();
+
 export async function PATCH(request: Request) {
     const body = await request.json();
     const { email, phone, password } = body;
@@ -13,6 +13,7 @@ export async function PATCH(request: Request) {
             headers: { "Content-Type": "application/json" },
         });
     }
+    await connectDB();
     const userId = await User.findOne({ email }).then(user => user?._id);
     
     if (!userId) {

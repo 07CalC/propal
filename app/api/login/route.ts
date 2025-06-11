@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 
-connectDB();
 
 export async function POST(req: Request) {
   try {
@@ -14,6 +13,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
 
+    await connectDB();
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });

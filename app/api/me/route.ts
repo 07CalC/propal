@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 
-connectDB();
+
 export async function GET(req: Request) {
     try {
         const token = (await cookies()).get('token')?.value;
@@ -16,7 +16,7 @@ export async function GET(req: Request) {
             });
         }
         const decoded = verifyToken(token) as { id: string } | null;
-
+        await connectDB();
         const user = await User.findById(decoded?.id).select('-password -__v');
 
         if (!user) {

@@ -4,11 +4,11 @@ import { User } from "@/models/User";
 import { signToken } from "@/lib/jwt";
 import { connectDB } from "@/lib/mongo";
 
-connectDB();
+
 
 export async function POST(req: Request) {
   const { username, email, password, phone } = await req.json();
-
+  await connectDB();
   const exists = await User.findOne({ email });
   if (exists) {
     return NextResponse.json(
