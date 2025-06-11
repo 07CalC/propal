@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/context/AuthContext';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -54,7 +55,7 @@ export default function SignupPage() {
         onSubmit={handleSubmit}
         className="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-full max-w-md space-y-4"
       >
-        <h1 className="text-2xl font-bold text-center text-white">Sign Up</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">Sign Up</h1>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -81,6 +82,16 @@ export default function SignupPage() {
         >
           Sign Up
         </button>
+
+        <p className="text-center text-gray-600 dark:text-gray-400">
+          Already have an account?{' '}
+          <Link 
+            href="/login" 
+            className="text-cyan-500 hover:text-cyan-600 font-medium"
+          >
+            Log in
+          </Link>
+        </p>
       </form>
     </div>
   );

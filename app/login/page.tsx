@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const { refresh } = useAuth();
@@ -51,7 +52,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-full max-w-md space-y-4"
       >
-        <h1 className="text-2xl font-bold text-center text-white">Login</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">Login</h1>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -84,6 +85,16 @@ export default function LoginPage() {
         >
           Login
         </button>
+
+        <p className="text-center text-gray-600 dark:text-gray-400">
+          Don't have an account?{' '}
+          <Link 
+            href="/signup" 
+            className="text-cyan-500 hover:text-cyan-600 font-medium transition-colors"
+          >
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );
